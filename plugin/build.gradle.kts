@@ -2,6 +2,7 @@
 
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.plugin.publish)
 }
 
 repositories {
@@ -44,6 +45,9 @@ testing {
 @Suppress("unused")
 gradlePlugin {
     testSourceSets.add(sourceSets["functionalTest"])
+
+    website = "https://github.com/tozydev/paper-infra-gradle"
+    vcsUrl = "https://github.com/tozydev/paper-infra-gradle.git"
 
     val paperInfraJava by plugins.creating {
         id = "$group.paper-infra.java"
