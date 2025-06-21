@@ -7,3 +7,7 @@ plugins {
 }
 
 rootProject.name = "paper-infra-gradle-parent"
+
+include("examples:paper-java")
+include("examples:paper-kotlin")
+include("examples:paper-shadow")
