@@ -49,11 +49,14 @@ gradlePlugin {
     website = "https://github.com/tozydev/paper-infra-gradle"
     vcsUrl = "https://github.com/tozydev/paper-infra-gradle.git"
 
+    val pluginTags = setOf("paper", "minecraft", "infrastructure", "development", "tools")
+
     val paperInfraJava by plugins.creating {
         id = "$group.paper-infra.java"
         displayName = "Paper Infrastructure Java Plugin"
         description = "A Gradle plugin to set up the Paper Minecraft Java development environment."
         implementationClass = "vn.id.tozydev.paperinfra.java.PaperInfraJavaPlugin"
+        tags = pluginTags
     }
 
     val paperInfraKotlin by plugins.creating {
@@ -61,6 +64,7 @@ gradlePlugin {
         displayName = "Paper Infrastructure Kotlin Plugin"
         description = "A Gradle plugin to set up the Paper Minecraft Kotlin development environment."
         implementationClass = "vn.id.tozydev.paperinfra.kotlin.PaperInfraKotlinPlugin"
+        tags = pluginTags
     }
 
     val paperInfraShadow by plugins.creating {
@@ -68,6 +72,7 @@ gradlePlugin {
         displayName = "Paper Infrastructure Shadow Plugin"
         description = "A Gradle plugin to set up the Paper Minecraft Shadow development environment."
         implementationClass = "vn.id.tozydev.paperinfra.shadow.PaperInfraShadowPlugin"
+        tags = pluginTags
     }
 
     val paperInfraPaper by plugins.creating {
@@ -75,6 +80,7 @@ gradlePlugin {
         displayName = "Paper Infrastructure Paper Plugin"
         description = "A Gradle plugin to set up the Paper Minecraft Paper development environment."
         implementationClass = "vn.id.tozydev.paperinfra.paper.PaperInfraPaperPlugin"
+        tags = pluginTags
     }
 }
 
