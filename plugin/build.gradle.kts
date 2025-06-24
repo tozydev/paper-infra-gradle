@@ -93,3 +93,28 @@ tasks {
         enableStricterValidation = true
     }
 }
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://vela.tozydev.id.vn/snapshots")
+            name = "VelaSnapshots"
+            credentials {
+                username = propertyOrEnv("vela.username")
+                password = propertyOrEnv("vela.password")
+            }
+        }
+        if (!version.toString().endsWith("-SNAPSHOT")) {
+            maven {
+                url = uri("https://vela.tozydev.id.vn/releases")
+                name = "VelaReleases"
+                credentials {
+                    username = propertyOrEnv("vela.username")
+                    password = propertyOrEnv("vela.password")
+                }
+            }
+        }
+    }
+}
+
+fun Project.propertyOrEnv(name: String): String? = findProperty(name) as String? ?: System.getenv(name.uppercase().replace('.', '_'))
