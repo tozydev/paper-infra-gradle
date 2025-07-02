@@ -3,6 +3,7 @@
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.plugin.publish)
+    alias(libs.plugins.maven.publish)
 }
 
 repositories {
@@ -97,21 +98,17 @@ tasks {
 publishing {
     repositories {
         maven {
-            url = uri("https://vela.tozydev.id.vn/snapshots")
-            name = "VelaSnapshots"
+            val isSnapshot = version.toString().endsWith("-SNAPSHOT")
+            if (isSnapshot) {
+                url = uri("https://vela.tozydev.id.vn/snapshots")
+                name = "VelaSnapshots"
+            } else {
+                url = uri("https://vela.tozydev.id.vn/releases")
+                name = "VelaReleases"
+            }
             credentials {
                 username = propertyOrEnv("vela.username")
                 password = propertyOrEnv("vela.password")
-            }
-        }
-        if (!version.toString().endsWith("-SNAPSHOT")) {
-            maven {
-                url = uri("https://vela.tozydev.id.vn/releases")
-                name = "VelaReleases"
-                credentials {
-                    username = propertyOrEnv("vela.username")
-                    password = propertyOrEnv("vela.password")
-                }
             }
         }
     }
