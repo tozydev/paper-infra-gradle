@@ -47,41 +47,22 @@ testing {
 gradlePlugin {
     testSourceSets.add(sourceSets["functionalTest"])
 
-    website = "https://github.com/tozydev/paper-infra-gradle"
-    vcsUrl = "https://github.com/tozydev/paper-infra-gradle.git"
+    website = findProperty("pluginWebsite")?.toString()
+    vcsUrl = findProperty("pluginVcsUrl")?.toString()
 
-    val pluginTags = setOf("paper", "minecraft", "infrastructure", "development", "tools")
+    val pluginTags = findProperty("pluginTags")?.toString()?.split(",")?.map { it.trim() }
 
-    val paperInfraJava by plugins.creating {
-        id = "$group.paper-infra.java"
-        displayName = "Paper Infrastructure Java Plugin"
-        description = "A Gradle plugin to set up the Paper Minecraft Java development environment."
-        implementationClass = "vn.id.tozydev.paperinfra.java.PaperInfraJavaPlugin"
-        tags = pluginTags
-    }
-
-    val paperInfraKotlin by plugins.creating {
-        id = "$group.paper-infra.kotlin"
-        displayName = "Paper Infrastructure Kotlin Plugin"
-        description = "A Gradle plugin to set up the Paper Minecraft Kotlin development environment."
-        implementationClass = "vn.id.tozydev.paperinfra.kotlin.PaperInfraKotlinPlugin"
-        tags = pluginTags
-    }
-
-    val paperInfraShadow by plugins.creating {
-        id = "$group.paper-infra.shadow"
-        displayName = "Paper Infrastructure Shadow Plugin"
-        description = "A Gradle plugin to set up the Paper Minecraft Shadow development environment."
-        implementationClass = "vn.id.tozydev.paperinfra.shadow.PaperInfraShadowPlugin"
-        tags = pluginTags
-    }
-
-    val paperInfraPaper by plugins.creating {
-        id = "$group.paper-infra.paper"
-        displayName = "Paper Infrastructure Paper Plugin"
-        description = "A Gradle plugin to set up the Paper Minecraft Paper development environment."
-        implementationClass = "vn.id.tozydev.paperinfra.paper.PaperInfraPaperPlugin"
-        tags = pluginTags
+    setOf("java", "kotlin", "shadow", "paper").forEach {
+        plugins.create(
+            "paperInfra$it",
+            fun PluginDeclaration.() {
+                id = "$group.paper-infra.$it"
+                displayName = findProperty("plugin.$it.displayName")?.toString()
+                description = findProperty("plugin.$it.description")?.toString()
+                implementationClass = findProperty("plugin.$it.implementationClass")?.toString()
+                tags = pluginTags
+            },
+        )
     }
 }
 
