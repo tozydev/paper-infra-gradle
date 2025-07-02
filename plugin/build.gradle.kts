@@ -14,9 +14,9 @@ repositories {
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.shadow.gradle.plugin)
-    implementation(libs.paperweight.userdev)
-    implementation(libs.run.task)
-    implementation(libs.resource.factory)
+    implementation(libs.paperweight.userdev.plugin)
+    implementation(libs.run.task.plugin)
+    implementation(libs.resource.factory.plugin)
     implementation(libs.javapoet)
 }
 

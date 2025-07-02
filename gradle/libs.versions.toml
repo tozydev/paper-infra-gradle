@@ -11,9 +11,9 @@ maven-publish = "0.33.0"
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 shadow-gradle-plugin = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadow" }
-paperweight-userdev = { module = "io.papermc.paperweight:paperweight-userdev", version.ref = "paperweight" }
-run-task = { module = "xyz.jpenilla:run-task", version.ref = "run-task" }
-resource-factory = { module = "xyz.jpenilla:resource-factory", version.ref = "resource-factory" }
+paperweight-userdev-plugin = { module = "io.papermc.paperweight:paperweight-userdev", version.ref = "paperweight" }
+run-task-plugin = { module = "xyz.jpenilla:run-task", version.ref = "run-task" }
+resource-factory-plugin = { module = "xyz.jpenilla:resource-factory", version.ref = "resource-factory" }
 javapoet = { module = "com.palantir.javapoet:javapoet", version.ref = "javapoet" }
 gradle-maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 
